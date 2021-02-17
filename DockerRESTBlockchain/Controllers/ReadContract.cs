@@ -1,4 +1,5 @@
 ﻿using DockerRESTBlockchain.Models;
+using DockerRESTBlockchain.SwaggerGenerator;
 using DockerRESTBlockchain.Utils;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -33,7 +34,7 @@ namespace DockerRESTBlockchain.Controllers
             }
             var block = new Connect();
             Dictionary<object, object> Resul = new Dictionary<object, object>();
-            foreach (var item in block.DeserializedAbi())
+            foreach (var item in ReadAbi.DeserializedAbi())
             {
                 if (item.StateMutability == "view" && item.Inputs.Count == 0)
                 {
@@ -45,7 +46,7 @@ namespace DockerRESTBlockchain.Controllers
                         {
                             BigInteger number1;
                             BigInteger.TryParse(output.Result.ToString(), out number1);
-                            object name = output.Parameter.Name;
+                            object name = "string";
                             object outPutResult = output.Result;
                             if (output.Parameter.Name == "")
                             {
@@ -71,63 +72,27 @@ namespace DockerRESTBlockchain.Controllers
             }
             return NotFound();
         }
-        [HttpPost("{function}")]
+        [HttpPost("{function}/{paramenters}")]
         public async Task<ActionResult> PostfunctionAsync(string function, [FromBody] string text)
         {
             var result = $"{function}{text}";
             var block = new Connect();
-            foreach (var item in block.DeserializedAbi()) 
+            foreach (var item in ReadAbi.DeserializedAbi()) 
             {
                 if (item.Inputs.Count > 0)
                 {
                     return Ok(result);
                 }
             }
-                //var queryString = HttpContext.Request.Query;
-                //if (HttpContext.Request.Query.Count != 0)
-                //{
-                //    var objects = new object[HttpContext.Request.Query.Count];
-
-                //    var index = 0;
-                //    foreach (var item in HttpContext.Request.Query)
-                //    {
-                //        objects[index] = item.Value;
-                //        index++;
-                //    }
-                //}
             return NotFound();
         }
         [HttpGet("swagger")]
         public ActionResult GetCustomSwagger()
         {
-            //Dictionary<object, SwaggerJson.ComponentSchemas> pairs = new Dictionary<object, SwaggerJson.ComponentSchemas>();
-            //pairs.Add("OutputText", new SwaggerJson.ComponentSchemas { Type = "object", additionalProperties = false });
-            var block = new Connect();
-            //var result = new SwaggerJson
-            //{
-            //    openapi = "3.0.1",
-            //    info = new SwaggerJson.Info { version = "v1", title = "Docker rest blockchain" },
-            //    paths = block.keyValuePairs(),
-            //    components = block.componentsInside()
-            //};
-            //SwaggerJson.componentsInside test = new SwaggerJson.componentsInside { schemas = pairs };
-            //result.components = test;
-            //result.servers.Add(new SwaggerJson.Server { url = "localhost:49153" });
-            //Dictionary<object, object> dictionaries = block.keyValuePairs();
-            var result = block.keyValuePairs();
+          
+            var file = new CreateFile();
+            var result = file.keyValuePairs();
             return new JsonResult(result);
         }
-        //{
-            //  "openapi": "3.0.1",
-            //  "info": {
-            //    "title": "DockerRESTBlockchain",
-            //    "version": "v1"
-            //  },
-            //  "servers": [
-            //    {
-            //      "url": "https://localhost:49153"
-            //    }
-            //  ]
-            //}
     }
 }

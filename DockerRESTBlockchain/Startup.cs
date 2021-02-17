@@ -15,6 +15,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DockerRESTBlockchain.Controllers;
 using System.Text.Json;
+using DockerRESTBlockchain.SwaggerGenerator;
 
 namespace DockerRESTBlockchain
 {
@@ -30,8 +31,8 @@ namespace DockerRESTBlockchain
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var test = new CreateFile();
-            test.newJson();
+            var SwaggerFile = new CreateFile();
+            SwaggerFile.newJson();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
