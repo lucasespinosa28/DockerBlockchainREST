@@ -18,7 +18,7 @@ namespace DockerRESTBlockchain.Controllers
             BigInteger currentBlock = blocks.CurrentBlockAsync().Result;
             BigInteger oldblocks = currentBlock - BigInteger.Parse(HttpContext.Request.Query["NumberBlocks"]);
 
-            var transferEventHandler = blocks.GetContract().GetEvent("Transfer");
+            var transferEventHandler = blocks.GetContract().GetEvent(name);
             var cBlock = new BlockParameter(new HexBigInteger(currentBlock));
             var oBlock = new BlockParameter(new HexBigInteger(oldblocks));
             var filterAllTransferEventsForContract = transferEventHandler.CreateFilterInput(oBlock, cBlock);
