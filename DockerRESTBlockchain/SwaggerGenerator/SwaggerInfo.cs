@@ -5,7 +5,7 @@ namespace DockerRESTBlockchain.SwaggerGenerator
     public partial class Swagger
     {
 
-        public static Dictionary<object, object> Info()
+        private static Dictionary<object, object> Info()
         {
             var swaggerInfo = new Dictionary<object, object>();
             swaggerInfo.Add("title", "BlockchainRest");

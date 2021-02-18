@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  dockerrestblockchain:
+    image: ${DOCKER_REGISTRY-}dockerrestblockchain
+    build:
+      context: .
+      dockerfile: DockerRESTBlockchain/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - "44392:443"
+      - "54023:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro

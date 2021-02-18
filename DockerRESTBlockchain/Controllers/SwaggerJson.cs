@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace DockerRESTBlockchain.Controllers
 {
@@ -29,11 +26,11 @@ namespace DockerRESTBlockchain.Controllers
         public class componentsInside
         {
             public Dictionary<object, ComponentSchemas> schemas { get; set; }
-        } 
-        
+        }
+
         //public Dictionary<object, ComponentSchemas> schemas { get; set; }
-        
-        public class ComponentSchemas 
+
+        public class ComponentSchemas
         {
             public string type { get; set; }
             public Dictionary<object, ComponentSchemasproperties> properties { get; set; }
@@ -95,8 +92,8 @@ namespace DockerRESTBlockchain.Controllers
         public class Response
         {
             public string description { get; set; }
-            public Dictionary<object,object> content { get; set; }
-           
+            public Dictionary<object, object> content { get; set; }
+
         }
     }
 

@@ -1,21 +1,27 @@
+using CommandLine;
+using DockerRESTBlockchain.Models;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DockerRESTBlockchain
 {
+    public class Options
+    {
+        [Option('a', "address", Required = true, HelpText = "Contract Address.")]
+        public string Address { get; set; }
+    }
     public class Program
     {
+
         public static void Main(string[] args)
         {
+            Parser.Default.ParseArguments<Options>(args)
+                 .WithParsed<Options>(o =>
+                 {
+                     Address.hash = o.Address;
+                 });
             CreateHostBuilder(args).Build().Run();
         }
-
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>

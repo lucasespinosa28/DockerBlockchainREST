@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
+﻿using System.Numerics;
 
 namespace DockerRESTBlockchain.Utils
 {
@@ -10,9 +6,9 @@ namespace DockerRESTBlockchain.Utils
     {
         public static bool IsAddress(object addresss)
         {
-            if (addresss.ToString().Contains("0x") && addresss.ToString().Length == 42 )
+            if (addresss.ToString().Contains("0x") && addresss.ToString().Length == 42)
             {
-                return true; 
+                return true;
             }
             return false;
         }

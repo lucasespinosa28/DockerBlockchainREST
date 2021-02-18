@@ -1,13 +1,12 @@
 ﻿using DockerRESTBlockchain.Controllers;
 using DockerRESTBlockchain.SwaggerGenerator.Models;
-using System;
 using System.Collections.Generic;
 
 namespace DockerRESTBlockchain.SwaggerGenerator
 {
     public partial class Swagger
     {
-        public static Dictionary<object, object> Components()
+        private static Dictionary<object, object> Components()
         {
             var ComponentsSchemas = new Dictionary<object, object>();
             var ComponentsNames = new Dictionary<object, object>();
@@ -18,6 +17,7 @@ namespace DockerRESTBlockchain.SwaggerGenerator
                 if (item.StateMutability == "view")
                 {
 
+                    GetPaths.Contracts.Add(item.Name);
                     item.Outputs.ForEach((output) =>
                     {
                         if (output.Name == "")
@@ -34,7 +34,7 @@ namespace DockerRESTBlockchain.SwaggerGenerator
                 }
                 if (item.Type == "event")
                 {
-
+                    GetPaths.Events.Add(item.Name);
                     item.Inputs.ForEach((output) =>
                     {
                         if (output.Name == "")

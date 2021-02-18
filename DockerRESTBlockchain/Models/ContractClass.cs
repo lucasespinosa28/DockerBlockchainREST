@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace DockerRESTBlockchain.Models
 {
@@ -24,7 +21,7 @@ namespace DockerRESTBlockchain.Models
 
             [JsonPropertyName("outputs")]
             public List<Output> Outputs { get; set; } = new List<Output>();
-            
+
             [JsonPropertyName("stateMutability")]
             public string StateMutability { get; set; }
         }
