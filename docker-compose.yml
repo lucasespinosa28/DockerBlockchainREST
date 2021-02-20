@@ -5,7 +5,7 @@ services:
     image: ${DOCKER_REGISTRY-}dockerrestblockchain
     build:
       context: .
-      dockerfile: DockerRESTBlockchain/Dockerfile
+      dockerfile: DockerBlockchainRest/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80

@@ -6,7 +6,7 @@
     <ProjectGuid>7ec644fb-a642-44d5-ad96-df6cd111f97c</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
-    <DockerServiceName>dockerrestblockchain</DockerServiceName>
+    <DockerServiceName>dockerblockchainrest</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">
